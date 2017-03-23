@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+
+<head>
+<style>
+  .chart div {
+  font: 10px sans-serif;
+  background-color: steelblue;
+  text-align: right;
+  padding: 3px;
+  margin: 1px;
+  color: white;
+  }
+
+  .chart1 div {
+  font: 10px sans-serif;
+  background-color: blue;
+  text-align: right;
+  padding: 3px;
+  margin: 1px;
+  color: white;
+  }
+
+</style>
+
+<script src="http://d3js.org/d3.v3.min.js"
+	charset="utf-8"></script>
+
+<title>Federal budget spendings</title>
+
+</head>
+
+<body>
+
+<h2>2008 Spending</h2>
+<div class="chart" >
+</div>
+<h2>2016 Spending</h2>
+<div class="chart1" ></div>
+  <script>
+    var x=[34,22,20,8,16];
+    var y=[36,28,15,6,15];
+    var labels=["Social Security","Medicare","Defense","Net Interest","Other"]
+    var pos=0;
+    var makeBars=function(){
+
+      d3.select(".chart").selectAll("div")
+	     .data(x)
+	      .enter()
+      	.append("div")
+      	.style("width", function(d) {
+      	    return d*10 + "px";
+      	})
+      	.text( function(d) {
+      	    return labels[pos++]+": "+d;
+      	});
+
+        pos=0;
+      d3.select(".chart1").selectAll("div")
+    	.data(y)
+    	.enter()
+    	.append("div")
+    	.style("width", function(d) {
+    	    return d*10 + "px";
+    	})
+    	.text( function(d) {
+    	    return labels[pos++]+": "+d;
+    	});
+      }
+
+  makeBars();
+    </script>
+  </body>
+  </html>
